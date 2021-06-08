@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         aa = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_activated_1, drawerItems);
 
-
+        drawerList.getMenu().getItem(1).setActionView(R.layout.menu_img);
         drawerList.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem item) {
