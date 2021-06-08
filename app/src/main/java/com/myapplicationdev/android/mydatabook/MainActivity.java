@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     ArrayAdapter<String> aa;
     String currentTitle;
     ActionBar ab;
-    int page ;
+    Fragment fragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,17 +54,18 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> arg0, View arg1, int
                     position, long arg3) {
 
-                Fragment fragment = null;
-                if (position == 0)
-                    fragment = new BioFragment();
-                else if (position == 1)
-                    fragment = new VaccinationFragment();
-                else if (position == 2)
-                    fragment = new AnniversaryFragment();
-                else if (position == 3)
-                    fragment = new AboutUsFragment();
 
-                page = position;
+                if (position == 0) {
+                    fragment = new BioFragment();
+                }else if (position == 1) {
+                    fragment = new VaccinationFragment();
+                }else if (position == 2) {
+                    fragment = new AnniversaryFragment();
+                }else if (position == 3) {
+                    Intent i = new Intent(MainActivity.this, AboutUsActivity.class);
+                    startActivity(i);
+                }
+
                 FragmentManager fm = getSupportFragmentManager();
                 FragmentTransaction trans = fm.beginTransaction();
                 trans.replace(R.id.content_frame, fragment);
