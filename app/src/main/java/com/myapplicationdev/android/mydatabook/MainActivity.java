@@ -21,12 +21,13 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity {
     private ActionBarDrawerToggle drawerToggle;
     private String[] drawerItems;
     private DrawerLayout drawerLayout;
-    private ListView drawerList;
+    private NavigationView drawerList;
     ArrayAdapter<String> aa;
     String currentTitle;
     ActionBar ab;
@@ -45,45 +46,56 @@ public class MainActivity extends AppCompatActivity {
 
         aa = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_activated_1, drawerItems);
-        drawerList.setAdapter(aa);
 
 
-        // Set the list's click listener
-        drawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        drawerList.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public void onItemClick(AdapterView<?> arg0, View arg1, int
-                    position, long arg3) {
+            public boolean onNavigationItemSelected(MenuItem item) {
+                Fragment fragment = null;
+                String msg = "";
+                switch (item.getItemId()) {
+                    case R.id.nav_bio:
+                        fragment = new BioFragment();
+                        FragmentManager fragmentManager = getSupportFragmentManager();
+                        FragmentTransaction transaction = fragmentManager.beginTransaction();
+                        transaction.replace(R.id.content_frame, fragment);
+                        transaction.commit();
+                        break;
+                    case R.id.nav_vacci:
+                        fragment = new VaccinationFragment();
+                        fragmentManager = getSupportFragmentManager();
+                        transaction = fragmentManager.beginTransaction();
+                        transaction.replace(R.id.content_frame, fragment);
+                        transaction.commit();
 
-
-                if (position == 0) {
-                    fragment = new BioFragment();
-                }else if (position == 1) {
-                    fragment = new VaccinationFragment();
-                }else if (position == 2) {
-                    fragment = new AnniversaryFragment();
-                }else if (position == 3) {
-                    Intent i = new Intent(MainActivity.this, AboutUsActivity.class);
-                    startActivity(i);
+                        break;
+                    case R.id.nav_anni:
+                        fragment = new AnniversaryFragment();
+                        fragmentManager = getSupportFragmentManager();
+                        transaction = fragmentManager.beginTransaction();
+                        transaction.replace(R.id.content_frame, fragment);
+                        transaction.commit();
+                        break;
+                    case R.id.nav_about:
+                        Intent intent = new Intent(MainActivity.this, AboutUsActivity.class);
+                        startActivity(intent);
+                        break;
                 }
-
-                FragmentManager fm = getSupportFragmentManager();
-                FragmentTransaction trans = fm.beginTransaction();
-                trans.replace(R.id.content_frame, fragment);
-                trans.commit();
-
-                // Highlight the selected item,
-                //  update the title, and close the drawer
-                drawerList.setItemChecked(position, true);
-                currentTitle = drawerItems[position];
-                ab.setTitle(currentTitle);
-                drawerLayout.closeDrawer(drawerList);
+                //Having conflit with fragment and activity.Thus, we have to put all these all
+//                four lines under each case
+//                fragmentManager = getSupportFragmentManager();
+//                transaction = fragmentManager.beginTransaction();
+//                transaction.replace(R.id.content_frame, fragment);
+//                transaction.commit();
+                ab.setTitle(msg);
+                drawerLayout.closeDrawers();
+                return true;
             }
         });
-
         currentTitle = this.getTitle().toString();
 
         drawerToggle = new ActionBarDrawerToggle(this,
-                drawerLayout, 	  /* DrawerLayout object */
+                drawerLayout,      /* DrawerLayout object */
                 R.string.drawer_open, /* "open drawer" description */
                 R.string.drawer_close /* "close drawer" description */
         ) {
@@ -140,7 +152,6 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
 
 
 }

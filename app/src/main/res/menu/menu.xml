@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_bio"
+            android:icon="@drawable/info"
+            android:title="Bio" />
+        <item
+            android:id="@+id/nav_vacci"
+            android:icon="@drawable/edit"
+            android:title="Vaccination" />
+        <item
+            android:id="@+id/nav_anni"
+            android:icon="@drawable/anniversary"
+            android:title="Anniversary" />
+        <item
+            android:id="@+id/nav_about"
+            android:icon="@drawable/star"
+            android:title="About Us" />
+
+    </group>
+</menu>
