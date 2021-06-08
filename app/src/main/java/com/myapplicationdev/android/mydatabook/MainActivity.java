@@ -52,7 +52,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(MenuItem item) {
                 Fragment fragment = null;
-                String msg = "";
                 switch (item.getItemId()) {
                     case R.id.nav_bio:
                         fragment = new BioFragment();
