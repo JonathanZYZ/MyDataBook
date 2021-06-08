@@ -5,22 +5,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:padding="10dp"
     tools:context=".AboutUsActivity">
 
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Created by: Ah Chong, Peter, Mary" />
+        android:layout_gravity="center_horizontal"
+        android:text="Created by: Ah Chong, Peter, Mary"
+        android:textStyle="bold|italic" />
 
     <ImageView
         android:id="@+id/iv"
         android:layout_width="300dp"
-        android:layout_height="300dp" />
+        android:layout_height="300dp"
+        android:layout_gravity="center_horizontal" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="C347 - Android Programming II Republic Polytechnic" />
+        android:layout_gravity="center"
+        android:text="C347 - Android Programming II Republic Polytechnic"
+        android:textStyle="bold" />
 
 </LinearLayout>
