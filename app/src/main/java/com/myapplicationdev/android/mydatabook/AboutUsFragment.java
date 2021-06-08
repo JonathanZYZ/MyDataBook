@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
@@ -28,24 +29,8 @@ public class AboutUsFragment extends Fragment {
         iv = view.findViewById(R.id.iv);
 
         String imageUrl = "https://upload.wikimedia.org/wikipedia/commons/8/80/Republic_Polytechnic_Logo.jpg";
-        
-        // .placeholder to hold the loader image when the imageUrl is still loading.
-        Picasso.with(getActivity()).load(imageUrl).placeholder(R.raw.ajax_loader).into(iv);
-
-        Picasso.Builder builder = new Picasso.Builder(getActivity());
-        builder.listener(new Picasso.Listener()
-        {
-            @Override
-            public void onImageLoadFailed(Picasso picasso, Uri uri, Exception exception)
-            {
-                // when the image fails to load. It will show an error image.
-                Picasso.with(getActivity()).load(imageUrl).error(R.drawable.error).into(iv);
-                exception.printStackTrace();
-            }
-        });
-
-
-
+        // .placeholder to hold the loader image when the imageUrl is still loading, .error will display the error.png if the the image is unable to display.
+        Picasso.with(getActivity()).load(imageUrl).placeholder(R.drawable.ajax_loader).error(R.drawable.error).into(iv);
         return view;
     }
 }
