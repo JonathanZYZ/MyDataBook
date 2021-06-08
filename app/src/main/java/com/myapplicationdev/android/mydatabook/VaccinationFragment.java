@@ -66,7 +66,7 @@ public class VaccinationFragment extends Fragment {
     public void onResume() {
         super.onResume();
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
-        String item = sharedPreferences.getString("Items","");
+        String item = sharedPreferences.getString("vacc","");
         tvText.setText(item);
     }
 
@@ -75,7 +75,7 @@ public class VaccinationFragment extends Fragment {
         super.onPause();
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("Items",tvText.getText().toString());
+        editor.putString("vacc",tvText.getText().toString());
         editor.commit();
     }
 }

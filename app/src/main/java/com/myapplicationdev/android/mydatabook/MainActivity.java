@@ -8,7 +8,9 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -27,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     ArrayAdapter<String> aa;
     String currentTitle;
     ActionBar ab;
-
+    int page ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
         aa = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_activated_1, drawerItems);
         drawerList.setAdapter(aa);
+
 
         // Set the list's click listener
         drawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -60,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
                 else if (position == 3)
                     fragment = new AboutUsFragment();
 
+                page = position;
                 FragmentManager fm = getSupportFragmentManager();
                 FragmentTransaction trans = fm.beginTransaction();
                 trans.replace(R.id.content_frame, fragment);
@@ -132,4 +136,7 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
+
 }

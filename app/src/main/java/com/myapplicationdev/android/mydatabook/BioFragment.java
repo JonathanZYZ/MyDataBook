@@ -66,7 +66,7 @@ public class BioFragment extends Fragment {
     public void onResume() {
         super.onResume();
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
-        String item = sharedPreferences.getString("Items","");
+        String item = sharedPreferences.getString("bio","");
         tvText.setText(item);
     }
 
@@ -75,7 +75,7 @@ public class BioFragment extends Fragment {
         super.onPause();
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("Items",tvText.getText().toString());
+        editor.putString("bio",tvText.getText().toString());
         editor.commit();
     }
 }
